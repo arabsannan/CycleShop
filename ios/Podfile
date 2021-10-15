@@ -12,6 +12,10 @@ target 'CycleShop' do
     :hermes_enabled => false
   )
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+
   target 'CycleShopTests' do
     inherit! :complete
     # Pods for testing
