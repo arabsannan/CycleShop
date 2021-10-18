@@ -107,8 +107,6 @@ const Login = ({navigation}) => {
       <Text style={styles.bikeText}>Power Bike Shop</Text>
 
       <View style={styles.buttonView}>
-        {/* <AntDesign name="google" color="#fff" size={30} /> */}
-
         <TouchableOpacity style={styles.googleButton}>
           <AntDesign name="google" color="black" size={24} />
           <Text style={styles.googleText}>Login with Gmail</Text>
