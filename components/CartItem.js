@@ -1,6 +1,7 @@
+import {CurrentRenderContext} from '@react-navigation/core';
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
-import {AntDesign} from 'react-native-vector-icons/AntDesign';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const styles = StyleSheet.create({
   container: {
@@ -15,37 +16,34 @@ const styles = StyleSheet.create({
     padding: 3,
     backgroundColor: '#fff',
     alignSelf: 'flex-end',
-    borderRadius: 50,
+    borderRadius: 10,
     borderColor: '#E0E0E0',
     borderWidth: 1,
   },
   col: {
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
   },
-  detailsCol: {},
   boldText: {
     fontWeight: 'bold',
     fontSize: 16,
   },
-  icon1: {
+  removeIcon: {
     marginRight: 5,
   },
-  icon2: {
+  addIcon: {
     marginLeft: 5,
   },
-  dollar: {
-    color: '#ff7518',
+  amount: {
+    color: '#e2884b',
   },
   title: {
-    fontSize: 18,
+    fontSize: 16,
+    color: 'black',
   },
   quantity: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-  },
-  greyText: {
-    color: '#BEBEBE',
   },
   image: {
     height: 80,
@@ -58,60 +56,62 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  title: {
-    fontSize: 16,
+  number: {
+    color: 'black',
+    fontWeight: '400',
+    fontSize: 18,
+    marginHorizontal: 5,
   },
   subText: {
     fontSize: 14,
-    color: '#D3D3D3',
+    color: '#a5a5a5',
   },
   price: {
-    fontSize: 16,
+    fontSize: 18,
+    color: 'black',
     fontWeight: 'bold',
   },
 });
 
-const CartItem = ({name, price, subText }) => {
+const Item = ({name, price, subText, image}) => {
   return (
     <View style={styles.container}>
       <View>
-        <Image
-          source={require('../assets/img/bike1.jpg')}
-          style={styles.image}
-        />
+        <Image source={image} style={styles.image} />
       </View>
       <View style={styles.col}>
         <Text style={styles.title}>{name}</Text>
         <Text style={styles.subText}>{subText}</Text>
-        <Text style={styles.price}>
-          <Text style={styles.dollar}>$</Text>
-          {price}
+        <Text>
+          <Text style={styles.amount}>$ </Text>
+          <Text style={styles.price}>{price}</Text>
         </Text>
       </View>
       <View style={styles.col}>
         <AntDesign
           name="delete"
           size={15}
-          color="#ff7518"
+          color="#e2884b"
           style={styles.deleteIcon}
         />
         <View style={styles.quantity}>
           <AntDesign
-            style={styles.icon1}
+            style={styles.removeIcon}
             name="minuscircle"
             size={24}
             color="black"
           />
-          <Text>1</Text>
+          <Text style={styles.number}>1</Text>
           <AntDesign
-            style={styles.icon2}
+            style={styles.addIcon}
             name="pluscircle"
             size={24}
-            color="#ff7518"
+            color="#e2884b"
           />
         </View>
       </View>
     </View>
   );
 };
-export default CartItem;
+
+export default Item;

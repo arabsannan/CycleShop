@@ -1,15 +1,8 @@
 import React from 'react';
-import {FlatList, StyleSheet, Text, View, Image} from 'react-native';
-// import CheckoutButton from '../components/CheckoutButton';
-import CartItem from '../components/CartItem';
+import {FlatList, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import Item from '../components/CartItem';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import BottomTab from '../components/BottomTab';
-// import {useNavigation} from '@react-navigation/core';
-
-// const navigation = useNavigation();
-
-const handleReturn = () => {
-  navigation.goBack();
-};
 
 const cycleCards = [
   {
@@ -17,62 +10,40 @@ const cycleCards = [
     name: 'Pinarello Bike',
     subText: 'Mountain Bike',
     price: '1,700.00',
+    image: require('../assets/img/bike2.webp'),
   },
   {
     id: '2',
     name: 'Brompton Bike',
     subText: 'Road Bike',
     price: '1,500.00',
+    image: require('../assets/img/bike3.webp'),
   },
   {
     id: '3',
     name: 'Pinarello Bike',
     subText: 'Urban Bike',
     price: '1,200.00',
+    image: require('../assets/img/bike5.jpg'),
   },
 ];
 
 const styles = StyleSheet.create({
   container: {
     flex: 10,
-    // marginHorizontal:20,
-  },
-  greyText: {
-    color: '#BEBEBE',
   },
   backIcon: {
     justifyContent: 'flex-start',
-  },
-  row: {
-    flexDirection: 'row',
-    marginHorizontal: 20,
   },
   boldText: {
     fontWeight: 'bold',
     fontSize: 16,
   },
-  quantity: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  icon1: {
-    marginRight: 5,
-  },
-  icon2: {
-    marginLeft: 5,
-  },
-  dollar: {
-    color: '#ff7518',
-  },
-  title: {
-    fontSize: 18,
-  },
   header: {
     flex: 0.2,
     marginHorizontal: 20,
+    marginVertical: 15,
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'center',
   },
   headerText: {
@@ -80,25 +51,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center',
   },
-  button: {
-    flex: 0.8,
-    justifyContent: 'center',
-    marginHorizontal: 20,
-    // alignItems:"center"
+  buttonView: {
+    backgroundColor: '#e2884b',
+    padding: 20,
+    marginHorizontal: 35,
+    marginVertical: 20,
+    borderRadius: 15,
+    alignItems: 'center',
   },
-  cards: {
-    flex: 0.6,
-  },
-  deleteIcon: {
-    // padding:3,
-    backgroundColor: '#fff',
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   figures: {
     flex: 0.6,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#e7e4e4de',
     padding: 25,
-    borderRadius: 10,
-    marginHorizontal: 20,
+    borderRadius: 20,
+    marginHorizontal: 15,
     justifyContent: 'center',
   },
   figureRow: {
@@ -106,50 +77,79 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginVertical: 5,
   },
-
   dollar: {
-    color: '#ff7518',
-    fontSize: 12,
+    color: '#e2884b',
+    fontSize: 15,
   },
   boldText: {
+    color: 'black',
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 18,
   },
   figureTitle: {
-    color: '#BEBEBE',
+    fontSize: 16,
+    color: '#a5a5a5',
   },
   figureHead2: {
+    color: 'black',
     fontSize: 18,
     fontWeight: 'bold',
   },
   borderHead: {
     borderBottomWidth: 2,
-    borderBottomStyle: 'dotted',
-    borderBottomColor: '#BEBEBE',
+    borderStyle: 'dashed',
+    borderBottomColor: '#bebebe',
   },
   bottom: {
-    paddingBottom: 7,
+    paddingBottom: 10,
   },
   bikes: {
     flex: 2.5,
-    // flexDirection:"row",
     marginTop: 20,
     marginBottom: 20,
   },
+  headerText: {
+    color: 'black',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  headerSubText: {
+    color: '#a5a5a5',
+    fontSize: 17,
+  },
+  backArrow: {
+    position: 'absolute',
+    top: 5,
+    left: 0,
+  },
 });
 
-const CartList = () => {
+const Cart = () => {
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <AntDesign
+          style={styles.backArrow}
+          name="arrowleft"
+          size={24}
+          color="black"
+        />
+        <View>
+          <Text style={styles.headerText}>Cart list</Text>
+          <Text style={styles.headerSubText}>(3 items)</Text>
+        </View>
+      </View>
+
       <View style={styles.bikes}>
         <FlatList
           data={cycleCards}
           renderItem={({item}) => {
             return (
-              <CartItem
+              <Item
                 name={item.name}
                 price={item.price}
                 subText={item.subText}
+                image={item.image}
               />
             );
           }}
@@ -162,28 +162,31 @@ const CartList = () => {
         <View style={styles.figureRow}>
           <Text style={styles.figureTitle}>SubTotal</Text>
           <Text style={styles.boldText}>
-            <Text style={styles.dollar}>$</Text>3,400.00
+            <Text style={styles.dollar}>$ </Text>3,400.00
           </Text>
         </View>
         <View style={[styles.figureRow, styles.borderHead, styles.bottom]}>
           <Text style={styles.figureTitle}>Shipping Fee</Text>
           <Text style={styles.boldText}>
-            <Text style={styles.dollar}>$</Text>100.00
+            <Text style={styles.dollar}>$ </Text>100.00
           </Text>
         </View>
         <View style={[styles.figureRow]}>
           <Text style={styles.figureHead2}>Total</Text>
           <Text style={styles.boldText}>
-            <Text style={styles.dollar}>$</Text>3,500.00
+            <Text style={styles.dollar}>$ </Text>3,500.00
           </Text>
         </View>
       </View>
-
-      <View style={styles.button}>{/* <CheckoutButton /> */}</View>
+      <View style={styles.buttonView}>
+        <TouchableOpacity>
+          <Text style={styles.buttonText}>Proceed to Checkout</Text>
+        </TouchableOpacity>
+      </View>
       <View>
         <BottomTab />
       </View>
     </View>
   );
 };
-export default CartList;
+export default Cart;

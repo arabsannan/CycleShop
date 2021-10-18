@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-import {Card, Button} from 'react-native-elements';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const styles = StyleSheet.create({
