@@ -1,8 +1,14 @@
 # CycleShop
-Login Page
+##Login Page
 
 ![Login page](https://github.com/arabsannan/CycleShop/blob/master/screenshots/login_page.jpg)
 
-Home Page
+##Home Page
 
 ![homepage](https://github.com/arabsannan/CycleShop/blob/master/screenshots/home_page.jpg)
+
+##Cart Page
+
+![homepage](https://github.com/arabsannan/CycleShop/blob/master/screenshots/cart_page.jpg)
+
+
